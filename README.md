@@ -39,3 +39,25 @@ python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset
 - 我们采用了三种不同的模型在Grocery_and_Gourmet_Food数据集和MovieLens_1M数据集上进行了对比实验，实验结果如下：
 ![result](result.png)
 
+\begin{table}[!htp]
+    \centering
+    \caption{Comparison of indicators trained by each model in different databases} \label{one}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        dataset & model & HR@20 & NDGC@20 & HR@50 & NDGC@50\\
+        \hline
+        \multirow{3}{*}{Grocery\_and\_Gourmet\_Food} & LightGCL & 0.5897 & 0.3070 & 0.8062 & 0.3497\\
+        \cline{2-6}
+         & LightGCN & 0.6125 & 0.3298 & 0.8189 & 0.3706 \\
+         \cline{2-6}
+         & BPRMF & 0.5463 & 0.2895 & 0.7664 & 0.3329 \\
+        \hline
+        \multirow{3}{*}{MovieLens\_1M} & LightGCL & 0.6844 & 0.3293 & 0.9161 & 0.3756\\
+        \cline{2-6}
+         & LightGCN & 0.7310 & 0.3528 & 0.9412 & 0.3951 \\
+         \cline{2-6}
+         & BPRMF & 0.7488 & 0.3659 & 0.9520 & 0.4068 \\
+         \hline
+    \end{tabular}
+\end{table}
+
