@@ -33,10 +33,7 @@ python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset
 python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset MovieLens_1M
 ```
 
-5.使用不同的内置数据集运行不同的模型
-```bash
-python main.py --model_name BPRMF --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset Grocery_and_Gourmet_Food
-```
+5. （可选）运行数据集文件夹中的`.ipynb`文件以下载和构建新的数据集，或根据`data`中的[指南](https://github.com/THUwangcy/ReChorus/tree/master/data/README.md)去准备自己的数据集
 
 #### 实验结果
 - **Flexible**: implement new readers or runners for different datasets and experimental settings, and each model can be assigned with specific helpers.
