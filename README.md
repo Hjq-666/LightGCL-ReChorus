@@ -36,5 +36,5 @@ python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset
 5. （可选）运行数据集文件夹中的`.ipynb`文件以下载和构建新的数据集，或根据`data`中的[指南](https://github.com/Hjq-666/LightGCL-ReChorus/blob/main/data/README.md)去准备自己的数据集
 
 #### 实验结果
-- 我们采用了三种不同的模型在Grocery_and_Gourmet_Food数据集和MovieLens_1M数据集上进行了对比实验
+- 我们采用了三种不同的模型在Grocery_and_Gourmet_Food数据集和MovieLens_1M数据集上进行了对比实验，实验结果如下：
 
