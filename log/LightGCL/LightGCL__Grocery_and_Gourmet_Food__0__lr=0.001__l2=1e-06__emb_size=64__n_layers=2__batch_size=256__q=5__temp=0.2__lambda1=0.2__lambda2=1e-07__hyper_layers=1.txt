@@ -1,0 +1,82 @@
+INFO:root:Namespace(model_name='LightGCL', model_mode='')
+INFO:root:--------------------------------------------- BEGIN: 2025-01-01 15:41:14 ---------------------------------------------
+INFO:root:
+===========================================
+ Arguments          | Values               
+===========================================
+ batch_size         | 256                 
+ data_appendix      |                     
+ dataset            | Grocery_and_Gourm...
+ dropout            | 0                   
+ early_stop         | 10                  
+ emb_size           | 64                  
+ epoch              | 200                 
+ eval_batch_size    | 256                 
+ gpu                | 0                   
+ hyper_layers       | 1                   
+ l2                 | 1e-06               
+ lambda1            | 0.2                 
+ lambda2            | 1e-07               
+ lr                 | 0.001               
+ main_metric        |                     
+ n_layers           | 2                   
+ num_neg            | 1                   
+ num_workers        | 0                   
+ optimizer          | Adam                
+ q                  | 5                   
+ random_seed        | 0                   
+ save_final_results | 1                   
+ temp               | 0.2                 
+ test_all           | 0                   
+ topk               | 5,10,20,50          
+===========================================
+INFO:root:Device: cuda
+INFO:root:Load corpus from data/Grocery_and_Gourmet_Food\BaseReader.pkl
+INFO:root:#params: 1497344
+INFO:root:LightGCL(
+  (encoder): LGCLEncoder(
+    (embedding_dict): ParameterDict(
+        (item_emb): Parameter containing: [torch.cuda.FloatTensor of size 8714x64 (cuda:0)]
+        (user_emb): Parameter containing: [torch.cuda.FloatTensor of size 14682x64 (cuda:0)]
+    )
+  )
+)
+INFO:root:Test Before Training: (HR@5:0.0479,NDCG@5:0.0282,HR@10:0.0986,NDCG@10:0.0443,HR@20:0.1929,NDCG@20:0.0678,HR@50:0.4985,NDCG@50:0.1276)
+INFO:root:Optimizer: Adam
+INFO:root:Epoch 1     loss=0.3601 [14.5 s]	dev=(HR@5:0.3552,NDCG@5:0.2479) [0.7 s] *
+INFO:root:Epoch 2     loss=0.2081 [11.5 s]	dev=(HR@5:0.3740,NDCG@5:0.2617) [0.7 s] *
+INFO:root:Epoch 3     loss=0.1537 [11.2 s]	dev=(HR@5:0.3877,NDCG@5:0.2719) [0.7 s] *
+INFO:root:Epoch 4     loss=0.1126 [11.6 s]	dev=(HR@5:0.3921,NDCG@5:0.2755) [0.6 s] *
+INFO:root:Epoch 5     loss=0.0805 [11.4 s]	dev=(HR@5:0.3951,NDCG@5:0.2788) [0.6 s] *
+INFO:root:Epoch 6     loss=0.0509 [11.2 s]	dev=(HR@5:0.3992,NDCG@5:0.2829) [0.7 s] *
+INFO:root:Epoch 7     loss=0.0290 [12.2 s]	dev=(HR@5:0.3996,NDCG@5:0.2829) [0.7 s]
+INFO:root:Epoch 8     loss=0.0072 [12.6 s]	dev=(HR@5:0.4075,NDCG@5:0.2875) [0.9 s] *
+INFO:root:Epoch 9     loss=-0.0122 [12.2 s]	dev=(HR@5:0.4100,NDCG@5:0.2905) [0.7 s] *
+INFO:root:Epoch 10    loss=-0.0287 [12.8 s]	dev=(HR@5:0.4122,NDCG@5:0.2920) [0.7 s] *
+INFO:root:Epoch 11    loss=-0.0440 [12.5 s]	dev=(HR@5:0.4159,NDCG@5:0.2948) [0.6 s] *
+INFO:root:Epoch 12    loss=-0.0570 [10.8 s]	dev=(HR@5:0.4139,NDCG@5:0.2944) [0.6 s]
+INFO:root:Epoch 13    loss=-0.0671 [11.7 s]	dev=(HR@5:0.4180,NDCG@5:0.2985) [0.6 s] *
+INFO:root:Epoch 14    loss=-0.0741 [12.5 s]	dev=(HR@5:0.4182,NDCG@5:0.2992) [0.6 s] *
+INFO:root:Epoch 15    loss=-0.0906 [11.3 s]	dev=(HR@5:0.4196,NDCG@5:0.2988) [0.6 s]
+INFO:root:Epoch 16    loss=-0.0904 [11.3 s]	dev=(HR@5:0.4158,NDCG@5:0.2958) [0.7 s]
+INFO:root:Epoch 17    loss=-0.0986 [11.3 s]	dev=(HR@5:0.4167,NDCG@5:0.2964) [0.6 s]
+INFO:root:Epoch 18    loss=-0.0973 [11.4 s]	dev=(HR@5:0.4150,NDCG@5:0.2954) [0.7 s]
+INFO:root:Epoch 19    loss=-0.1037 [11.5 s]	dev=(HR@5:0.4146,NDCG@5:0.2963) [0.7 s]
+INFO:root:Epoch 20    loss=-0.1080 [11.7 s]	dev=(HR@5:0.4169,NDCG@5:0.2983) [0.6 s]
+INFO:root:Epoch 21    loss=-0.1099 [12.4 s]	dev=(HR@5:0.4145,NDCG@5:0.2972) [0.8 s]
+INFO:root:Epoch 22    loss=-0.1144 [12.3 s]	dev=(HR@5:0.4142,NDCG@5:0.2969) [0.7 s]
+INFO:root:Epoch 23    loss=-0.1156 [11.5 s]	dev=(HR@5:0.4118,NDCG@5:0.2964) [0.6 s]
+INFO:root:Early stop at 23 based on dev result.
+INFO:root:
+Best Iter(dev)=   14	 dev=(HR@5:0.4182,NDCG@5:0.2992) [289.0 s] 
+INFO:root:Load model from ../model/LightGCL/LightGCL__Grocery_and_Gourmet_Food__0__lr=0.001__l2=1e-06__emb_size=64__n_layers=2__batch_size=256__q=5__temp=0.2__lambda1=0.2__lambda2=1e-07__hyper_layers=1.pt
+INFO:root:
+Dev  After Training: (HR@5:0.4182,NDCG@5:0.2992,HR@10:0.5369,NDCG@10:0.3378,HR@20:0.6454,NDCG@20:0.3652,HR@50:0.8283,NDCG@50:0.4014)
+INFO:root:
+Test After Training: (HR@5:0.3495,NDCG@5:0.2406,HR@10:0.4730,NDCG@10:0.2809,HR@20:0.5928,NDCG@20:0.3111,HR@50:0.8056,NDCG@50:0.3531)
+INFO:root:Saving top-100 recommendation results to: ../log/LightGCL\LightGCL__Grocery_and_Gourmet_Food__0__lr=0\rec-LightGCL-dev.csv
+INFO:root:dev Prediction results saved!
+INFO:root:Saving top-100 recommendation results to: ../log/LightGCL\LightGCL__Grocery_and_Gourmet_Food__0__lr=0\rec-LightGCL-test.csv
+INFO:root:test Prediction results saved!
+INFO:root:
+--------------------------------------------- END: 2025-01-01 15:46:14 ---------------------------------------------

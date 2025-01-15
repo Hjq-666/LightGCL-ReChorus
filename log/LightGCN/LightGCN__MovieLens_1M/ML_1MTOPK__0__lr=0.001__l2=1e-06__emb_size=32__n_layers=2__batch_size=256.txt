@@ -1,0 +1,120 @@
+INFO:root:Namespace(model_name='LightGCN', model_mode='')
+INFO:root:--------------------------------------------- BEGIN: 2025-01-01 18:22:50 ---------------------------------------------
+INFO:root:
+===========================================
+ Arguments          | Values               
+===========================================
+ batch_size         | 256                 
+ data_appendix      |                     
+ dataset            | MovieLens_1M/ML_1...
+ dropout            | 0                   
+ early_stop         | 10                  
+ emb_size           | 32                  
+ epoch              | 200                 
+ eval_batch_size    | 256                 
+ gpu                | 0                   
+ l2                 | 1e-06               
+ lr                 | 0.001               
+ main_metric        |                     
+ n_layers           | 2                   
+ num_neg            | 1                   
+ num_workers        | 0                   
+ optimizer          | Adam                
+ random_seed        | 0                   
+ save_final_results | 1                   
+ test_all           | 0                   
+ topk               | 5,10,20,50          
+===========================================
+INFO:root:Device: cuda
+INFO:root:Load corpus from data/MovieLens_1M/ML_1MTOPK\BaseReader.pkl
+INFO:root:#params: 293088
+INFO:root:LightGCN(
+  (encoder): LGCNEncoder(
+    (embedding_dict): ParameterDict(
+        (item_emb): Parameter containing: [torch.cuda.FloatTensor of size 3126x32 (cuda:0)]
+        (user_emb): Parameter containing: [torch.cuda.FloatTensor of size 6033x32 (cuda:0)]
+    )
+  )
+)
+INFO:root:Test Before Training: (HR@5:0.0442,NDCG@5:0.0270,HR@10:0.0898,NDCG@10:0.0416,HR@20:0.1955,NDCG@20:0.0680,HR@50:0.5056,NDCG@50:0.1284)
+INFO:root:Optimizer: Adam
+INFO:root:Epoch 1     loss=0.3796 [57.3 s]	dev=(HR@5:0.3400,NDCG@5:0.2283) [0.1 s] *
+INFO:root:Epoch 2     loss=0.3378 [55.2 s]	dev=(HR@5:0.3427,NDCG@5:0.2317) [0.2 s] *
+INFO:root:Epoch 3     loss=0.3275 [57.0 s]	dev=(HR@5:0.3532,NDCG@5:0.2384) [0.1 s] *
+INFO:root:Epoch 4     loss=0.3028 [55.2 s]	dev=(HR@5:0.3692,NDCG@5:0.2461) [0.1 s] *
+INFO:root:Epoch 5     loss=0.2857 [57.6 s]	dev=(HR@5:0.3724,NDCG@5:0.2449) [0.1 s]
+INFO:root:Epoch 6     loss=0.2789 [54.0 s]	dev=(HR@5:0.3728,NDCG@5:0.2458) [0.1 s]
+INFO:root:Epoch 7     loss=0.2715 [58.2 s]	dev=(HR@5:0.3759,NDCG@5:0.2483) [0.1 s] *
+INFO:root:Epoch 8     loss=0.2620 [58.3 s]	dev=(HR@5:0.3872,NDCG@5:0.2556) [0.1 s] *
+INFO:root:Epoch 9     loss=0.2502 [57.5 s]	dev=(HR@5:0.3868,NDCG@5:0.2607) [0.1 s] *
+INFO:root:Epoch 10    loss=0.2420 [56.2 s]	dev=(HR@5:0.3891,NDCG@5:0.2609) [0.1 s] *
+INFO:root:Epoch 11    loss=0.2346 [57.0 s]	dev=(HR@5:0.3888,NDCG@5:0.2594) [0.1 s]
+INFO:root:Epoch 12    loss=0.2315 [57.6 s]	dev=(HR@5:0.3895,NDCG@5:0.2622) [0.1 s] *
+INFO:root:Epoch 13    loss=0.2278 [60.8 s]	dev=(HR@5:0.3915,NDCG@5:0.2638) [0.1 s] *
+INFO:root:Epoch 14    loss=0.2262 [56.4 s]	dev=(HR@5:0.3888,NDCG@5:0.2597) [0.2 s]
+INFO:root:Epoch 15    loss=0.2248 [57.7 s]	dev=(HR@5:0.3919,NDCG@5:0.2638) [0.1 s]
+INFO:root:Epoch 16    loss=0.2217 [59.0 s]	dev=(HR@5:0.3927,NDCG@5:0.2662) [0.1 s] *
+INFO:root:Epoch 17    loss=0.2161 [63.3 s]	dev=(HR@5:0.3977,NDCG@5:0.2685) [0.1 s] *
+INFO:root:Epoch 18    loss=0.2153 [61.6 s]	dev=(HR@5:0.3993,NDCG@5:0.2715) [0.2 s] *
+INFO:root:Epoch 19    loss=0.2117 [67.6 s]	dev=(HR@5:0.3950,NDCG@5:0.2712) [0.2 s]
+INFO:root:Epoch 20    loss=0.2092 [60.1 s]	dev=(HR@5:0.3931,NDCG@5:0.2701) [0.1 s]
+INFO:root:Epoch 21    loss=0.2065 [59.2 s]	dev=(HR@5:0.3981,NDCG@5:0.2720) [0.1 s] *
+INFO:root:Epoch 22    loss=0.2048 [61.0 s]	dev=(HR@5:0.4048,NDCG@5:0.2748) [0.1 s] *
+INFO:root:Epoch 23    loss=0.2042 [59.6 s]	dev=(HR@5:0.4052,NDCG@5:0.2747) [0.1 s]
+INFO:root:Epoch 24    loss=0.2025 [55.8 s]	dev=(HR@5:0.4052,NDCG@5:0.2756) [0.1 s] *
+INFO:root:Epoch 25    loss=0.2007 [55.7 s]	dev=(HR@5:0.4020,NDCG@5:0.2748) [0.1 s]
+INFO:root:Epoch 26    loss=0.2000 [57.0 s]	dev=(HR@5:0.4020,NDCG@5:0.2734) [0.1 s]
+INFO:root:Epoch 27    loss=0.1982 [54.8 s]	dev=(HR@5:0.4059,NDCG@5:0.2763) [0.1 s] *
+INFO:root:Epoch 28    loss=0.1978 [54.0 s]	dev=(HR@5:0.4067,NDCG@5:0.2761) [0.1 s]
+INFO:root:Epoch 29    loss=0.1968 [53.8 s]	dev=(HR@5:0.4048,NDCG@5:0.2742) [0.1 s]
+INFO:root:Epoch 30    loss=0.1964 [53.7 s]	dev=(HR@5:0.4083,NDCG@5:0.2764) [0.1 s] *
+INFO:root:Epoch 31    loss=0.1944 [53.9 s]	dev=(HR@5:0.3985,NDCG@5:0.2722) [0.1 s]
+INFO:root:Epoch 32    loss=0.1940 [53.7 s]	dev=(HR@5:0.4024,NDCG@5:0.2730) [0.1 s]
+INFO:root:Epoch 33    loss=0.1925 [53.7 s]	dev=(HR@5:0.4001,NDCG@5:0.2732) [0.1 s]
+INFO:root:Epoch 34    loss=0.1923 [53.7 s]	dev=(HR@5:0.4059,NDCG@5:0.2758) [0.1 s]
+INFO:root:Epoch 35    loss=0.1918 [53.8 s]	dev=(HR@5:0.4036,NDCG@5:0.2753) [0.1 s]
+INFO:root:Epoch 36    loss=0.1916 [53.9 s]	dev=(HR@5:0.4075,NDCG@5:0.2769) [0.1 s] *
+INFO:root:Epoch 37    loss=0.1907 [54.0 s]	dev=(HR@5:0.4067,NDCG@5:0.2757) [0.1 s]
+INFO:root:Epoch 38    loss=0.1902 [59.2 s]	dev=(HR@5:0.4052,NDCG@5:0.2752) [0.1 s]
+INFO:root:Epoch 39    loss=0.1899 [56.2 s]	dev=(HR@5:0.4048,NDCG@5:0.2744) [0.1 s]
+INFO:root:Epoch 40    loss=0.1886 [55.8 s]	dev=(HR@5:0.4087,NDCG@5:0.2768) [0.1 s]
+INFO:root:Epoch 41    loss=0.1883 [54.0 s]	dev=(HR@5:0.4075,NDCG@5:0.2759) [0.1 s]
+INFO:root:Epoch 42    loss=0.1882 [65.9 s]	dev=(HR@5:0.4083,NDCG@5:0.2773) [0.1 s] *
+INFO:root:Epoch 43    loss=0.1876 [72.6 s]	dev=(HR@5:0.4071,NDCG@5:0.2757) [0.2 s]
+INFO:root:Epoch 44    loss=0.1866 [74.2 s]	dev=(HR@5:0.4130,NDCG@5:0.2769) [0.2 s]
+INFO:root:Epoch 45    loss=0.1857 [77.3 s]	dev=(HR@5:0.4133,NDCG@5:0.2782) [0.2 s] *
+INFO:root:Epoch 46    loss=0.1860 [77.4 s]	dev=(HR@5:0.4102,NDCG@5:0.2767) [0.2 s]
+INFO:root:Epoch 47    loss=0.1851 [74.2 s]	dev=(HR@5:0.4118,NDCG@5:0.2772) [0.2 s]
+INFO:root:Epoch 48    loss=0.1849 [72.8 s]	dev=(HR@5:0.4102,NDCG@5:0.2760) [0.2 s]
+INFO:root:Epoch 49    loss=0.1850 [72.8 s]	dev=(HR@5:0.4071,NDCG@5:0.2756) [0.2 s]
+INFO:root:Epoch 50    loss=0.1842 [73.2 s]	dev=(HR@5:0.4091,NDCG@5:0.2761) [0.2 s]
+INFO:root:Epoch 51    loss=0.1842 [73.2 s]	dev=(HR@5:0.4098,NDCG@5:0.2783) [0.2 s] *
+INFO:root:Epoch 52    loss=0.1833 [73.2 s]	dev=(HR@5:0.4094,NDCG@5:0.2763) [0.2 s]
+INFO:root:Epoch 53    loss=0.1830 [73.2 s]	dev=(HR@5:0.4102,NDCG@5:0.2763) [0.1 s]
+INFO:root:Epoch 54    loss=0.1821 [73.1 s]	dev=(HR@5:0.4110,NDCG@5:0.2776) [0.2 s]
+INFO:root:Epoch 55    loss=0.1809 [73.4 s]	dev=(HR@5:0.4145,NDCG@5:0.2797) [0.2 s] *
+INFO:root:Epoch 56    loss=0.1808 [70.6 s]	dev=(HR@5:0.4153,NDCG@5:0.2792) [0.2 s]
+INFO:root:Epoch 57    loss=0.1805 [73.0 s]	dev=(HR@5:0.4145,NDCG@5:0.2800) [0.1 s] *
+INFO:root:Epoch 58    loss=0.1797 [72.5 s]	dev=(HR@5:0.4165,NDCG@5:0.2797) [0.2 s]
+INFO:root:Epoch 59    loss=0.1791 [73.1 s]	dev=(HR@5:0.4133,NDCG@5:0.2789) [0.2 s]
+INFO:root:Epoch 60    loss=0.1789 [72.7 s]	dev=(HR@5:0.4126,NDCG@5:0.2784) [0.2 s]
+INFO:root:Epoch 61    loss=0.1793 [72.6 s]	dev=(HR@5:0.4059,NDCG@5:0.2749) [0.2 s]
+INFO:root:Epoch 62    loss=0.1785 [72.6 s]	dev=(HR@5:0.4044,NDCG@5:0.2741) [0.2 s]
+INFO:root:Epoch 63    loss=0.1787 [72.1 s]	dev=(HR@5:0.4036,NDCG@5:0.2732) [0.2 s]
+INFO:root:Epoch 64    loss=0.1779 [73.4 s]	dev=(HR@5:0.4036,NDCG@5:0.2744) [0.2 s]
+INFO:root:Epoch 65    loss=0.1761 [74.4 s]	dev=(HR@5:0.4083,NDCG@5:0.2762) [0.2 s]
+INFO:root:Epoch 66    loss=0.1773 [72.8 s]	dev=(HR@5:0.4110,NDCG@5:0.2765) [0.1 s]
+INFO:root:Early stop at 66 based on dev result.
+INFO:root:
+Best Iter(dev)=   57	 dev=(HR@5:0.4145,NDCG@5:0.2800) [4169.4 s] 
+INFO:root:Load model from ../model/LightGCN/LightGCN__MovieLens_1M/ML_1MTOPK__0__lr=0.001__l2=1e-06__emb_size=32__n_layers=2__batch_size=256.pt
+INFO:root:
+Dev  After Training: (HR@5:0.4145,NDCG@5:0.2800,HR@10:0.5898,NDCG@10:0.3366,HR@20:0.7752,NDCG@20:0.3832,HR@50:0.9536,NDCG@50:0.4191)
+INFO:root:
+Test After Training: (HR@5:0.3744,NDCG@5:0.2513,HR@10:0.5344,NDCG@10:0.3032,HR@20:0.7310,NDCG@20:0.3528,HR@50:0.9412,NDCG@50:0.3951)
+INFO:root:Saving top-100 recommendation results to: ../log/LightGCN/LightGCN__MovieLens_1M\ML_1MTOPK__0__lr=0\rec-LightGCN-dev.csv
+INFO:root:dev Prediction results saved!
+INFO:root:Saving top-100 recommendation results to: ../log/LightGCN/LightGCN__MovieLens_1M\ML_1MTOPK__0__lr=0\rec-LightGCN-test.csv
+INFO:root:test Prediction results saved!
+INFO:root:
+--------------------------------------------- END: 2025-01-01 19:32:30 ---------------------------------------------

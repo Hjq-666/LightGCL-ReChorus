@@ -1,0 +1,83 @@
+INFO:root:Namespace(model_name='CFKG', model_mode='')
+INFO:root:--------------------------------------------- BEGIN: 2025-01-01 22:19:21 ---------------------------------------------
+INFO:root:
+===========================================
+ Arguments          | Values               
+===========================================
+ batch_size         | 256                 
+ data_appendix      |                     
+ dataset            | Grocery_and_Gourm...
+ dropout            | 0                   
+ early_stop         | 10                  
+ emb_size           | 32                  
+ epoch              | 200                 
+ eval_batch_size    | 256                 
+ gpu                | 0                   
+ include_attr       | 0                   
+ l2                 | 1e-06               
+ lr                 | 0.001               
+ main_metric        |                     
+ margin             | 0                   
+ num_neg            | 1                   
+ num_workers        | 0                   
+ optimizer          | Adam                
+ random_seed        | 0                   
+ save_final_results | 1                   
+ test_all           | 0                   
+ topk               | 5,10,20,50          
+===========================================
+INFO:root:Device: cuda
+INFO:root:Reading data from "data/", dataset = "Grocery_and_Gourmet_Food" 
+INFO:root:Counting dataset statistics...
+INFO:root:"# user": 14681, "# item": 8713, "# entry": 151254
+INFO:root:Appending history info...
+INFO:root:Constructing relation triplets...
+INFO:root:Item-item relations:['r_complement', 'r_substitute']
+INFO:root:"# relation": 3, "# triplet": 373377
+INFO:root:Save corpus to data/Grocery_and_Gourmet_Food\KGReader.pkl
+INFO:root:#params: 748768
+INFO:root:CFKG(
+  (e_embeddings): Embedding(23396, 32)
+  (r_embeddings): Embedding(3, 32)
+  (loss_function): MarginRankingLoss()
+)
+INFO:root:Test Before Training: (HR@5:0.0514,NDCG@5:0.0304,HR@10:0.1031,NDCG@10:0.0469,HR@20:0.2048,NDCG@20:0.0723,HR@50:0.5075,NDCG@50:0.1315)
+INFO:root:Optimizer: Adam
+INFO:root:Namespace(model_name='CFKG', model_mode='')
+INFO:root:--------------------------------------------- BEGIN: 2025-01-01 22:22:47 ---------------------------------------------
+INFO:root:
+===========================================
+ Arguments          | Values               
+===========================================
+ batch_size         | 256                 
+ data_appendix      |                     
+ dataset            | Grocery_and_Gourm...
+ dropout            | 0                   
+ early_stop         | 10                  
+ emb_size           | 32                  
+ epoch              | 200                 
+ eval_batch_size    | 256                 
+ gpu                | 0                   
+ include_attr       | 0                   
+ l2                 | 1e-06               
+ lr                 | 0.001               
+ main_metric        |                     
+ margin             | 0                   
+ num_neg            | 1                   
+ num_workers        | 0                   
+ optimizer          | Adam                
+ random_seed        | 0                   
+ save_final_results | 1                   
+ test_all           | 0                   
+ topk               | 5,10,20,50          
+===========================================
+INFO:root:Device: cuda
+INFO:root:Load corpus from data/Grocery_and_Gourmet_Food\KGReader.pkl
+INFO:root:#params: 748768
+INFO:root:CFKG(
+  (e_embeddings): Embedding(23396, 32)
+  (r_embeddings): Embedding(3, 32)
+  (loss_function): MarginRankingLoss()
+)
+INFO:root:Test Before Training: (HR@5:0.0514,NDCG@5:0.0304,HR@10:0.1031,NDCG@10:0.0469,HR@20:0.2048,NDCG@20:0.0723,HR@50:0.5075,NDCG@50:0.1315)
+INFO:root:Optimizer: Adam
