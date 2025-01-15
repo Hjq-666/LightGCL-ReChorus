@@ -36,7 +36,7 @@ python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset
 5. （可选）运行数据集文件夹中`.ipynb`文件以下载和构建新的数据集，或根据`data`中的[指南](https://github.com/Hjq-666/LightGCL-ReChorus/blob/main/data/README.md)去准备自己的数据集
 
 #### 实验结果
-- 我们采用了三种不同的模型在[Grocery_and_Gourmet_Food](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions)数据集和[MovieLens_1M](https://grouplens.org/datasets/movielens/1m/)数据集上进行了对比实验，实验结果如下：
+- 我们采用了框架中三种不同的模型在[Grocery_and_Gourmet_Food](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions)数据集和[MovieLens_1M](https://grouplens.org/datasets/movielens/1m/)数据集上进行了对比实验，实验结果如下：
   
 | dataset                      | model    | HR@20 | NDGC@20 | HR@50 | NDGC@50 |
 |------------------------------|----------|-------|---------|-------|---------|
