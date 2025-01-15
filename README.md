@@ -2,8 +2,7 @@
 
 ### SYSU-人工智能学院-机器学习大作业
 #### 项目介绍
-- 利用推荐系统为背景，采用[ReChorus2.0框架](https://github.com/THUwangcy/ReChorus)，对LightGCL推荐模型进行复现，并与框架中同类别算法（不少于2个），在框架提供的数据集上
-（不少于2个），进行实验结果对比分析
+- 利用推荐系统为背景，采用[ReChorus2.0框架](https://github.com/THUwangcy/ReChorus)，对[LightGCL](https://github.com/HKUDS/LightGCL)推荐模型进行复现，并与框架中同类别算法（不少于2个），在框架提供的数据集上（不少于2个），进行实验结果对比分析
 
 #### 代码位置
 - **Swift**: concentrate on your model design ***in a single file*** and implement new models quickly.
