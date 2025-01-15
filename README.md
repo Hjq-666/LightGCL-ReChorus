@@ -2,21 +2,6 @@
 
 ## SYSU-人工智能学院-机器学习大作业
 
-
-ReChorus2.0 is a modular and task-flexible PyTorch library for recommendation, especially for research purpose. It aims to provide researchers a flexible framework to implement various recommendation tasks, compare different algorithms, and adapt to diverse and highly-customized data inputs. We hope ReChorus2.0 can serve as a more convinient and user-friendly tool for researchers, so as to form a "Chorus" of recommendation tasks and algorithms.
-
-The previous version of ReChorus can be found at [ReChorus1.0](https://github.com/THUwangcy/ReChorus/tree/ReChorus1.0)
-
-## What's New in ReChorus2.0:
-
-- **New Tasks**: Newly supporting the context-aware top-k recommendation and CTR prediction task. Newly supporting the Impression-based re-ranking task.
-- **New Models**: Adding Context-aware Recommenders and Impression-based Re-ranking Models. Listed below.
-- **New dataset format**: Supporting various contextual feature input. Customizing candidate item lists in training and evaluation. Supporting variable length positive and negative samples.
-- **Task Flexible**: Each model can serve for different tasks, and task switching is conveniently achieved by altering *model mode*.
-  
-
-This framework is especially suitable for researchers to choose or implement desired experimental settings, and compare algorithms under the same setting. The characteristics of our framework can be summarized as follows:
-
 - **Modular**: primary functions modularized into distinct components: runner, model, and reader, facilitating code comprehension and integration of new features.
   
 - **Swift**: concentrate on your model design ***in a single file*** and implement new models quickly.
