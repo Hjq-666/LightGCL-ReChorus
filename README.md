@@ -37,6 +37,7 @@ python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset
 
 #### 实验结果
 - 我们采用了三种不同的模型在Grocery_and_Gourmet_Food数据集和MovieLens_1M数据集上进行了对比实验，实验结果如下：
+  
 | dataset                      | model    | HR@20 | NDGC@20 | HR@50 | NDGC@50 |
 |------------------------------|----------|-------|---------|-------|---------|
 | Grocery_and_Gourmet_Food     | LightGCL | 0.5897| 0.3070  | 0.8062| 0.3497  |
