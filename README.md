@@ -1,4 +1,4 @@
-![logo](./docs/_static/logo2.0.png)
+LightGCL--ReChorus
 ---
 
 ![PyPI - Python Version](https://img.shields.io/badge/pyhton-3.10-blue) 
