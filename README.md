@@ -1,12 +1,16 @@
 # LightGCL--ReChorus
 
 ### SYSU-人工智能学院-机器学习大作业
+#### 项目介绍
 - **Modular**: primary functions modularized into distinct components: runner, model, and reader, facilitating code comprehension and integration of new features.
-  
+
+#### 代码位置
 - **Swift**: concentrate on your model design ***in a single file*** and implement new models quickly.
 
+#### 模型运行
 - **Efficient**: multi-thread batch preparation, special implementations for the evaluation, and around 90% GPU utilization during training for deep models.
 
+####实验结果
 - **Flexible**: implement new readers or runners for different datasets and experimental settings, and each model can be assigned with specific helpers.
 
 ## Structure
