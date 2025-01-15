@@ -31,7 +31,6 @@ python main.py --model_name BPRMF --emb_size 64 --lr 1e-3 --l2 1e-6 --dataset Gr
 
 5. (optional) Run jupyter notebook in `dataset` folder to download and build new datasets, or prepare your own datasets according to [Guideline](https://github.com/THUwangcy/ReChorus/tree/master/data/README.md) in `data`
 
-6. (optional) Implement your own models according to [Guideline](https://github.com/THUwangcy/ReChorus/tree/master/src/README.md) in `src`
 
 
 #### 实验结果
