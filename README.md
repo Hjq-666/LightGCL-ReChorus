@@ -1,7 +1,6 @@
 # LightGCL--ReChorus
 
 ## SYSU-人工智能学院-机器学习大作业
-
 - **Modular**: primary functions modularized into distinct components: runner, model, and reader, facilitating code comprehension and integration of new features.
   
 - **Swift**: concentrate on your model design ***in a single file*** and implement new models quickly.
