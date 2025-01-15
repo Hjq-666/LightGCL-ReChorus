@@ -8,25 +8,27 @@
 - LightGCL模型:`src/general/LightGCL.py`
 
 #### 模型运行
-1. Install [Anaconda](https://docs.conda.io/en/latest/miniconda.html) with Python >= 3.10
-2. Clone the repository
+1. 使用Python安装[Anaconda](https://docs.conda.io/en/latest/miniconda.html) >= 3.10
+2. 克隆存储库
 
 ```bash
 git clone https://github.com/THUwangcy/ReChorus.git
 ```
 
-3. Install requirements and step into the `src` folder
+3. 环境配置
 
 ```bash
 cd ReChorus
 pip install -r requirements.txt
-cd src
 ```
 
-4. Run model with the build-in dataset
+4. 使用内置数据集运行模型
 
 ```bash
-python main.py --model_name BPRMF --emb_size 64 --lr 1e-3 --l2 1e-6 --dataset Grocery_and_Gourmet_Food
+python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset Grocery_and_Gourmet_Food
+
+python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset
+MovieLens_1M
 ```
 
 5. (optional) Run jupyter notebook in `dataset` folder to download and build new datasets, or prepare your own datasets according to [Guideline](https://github.com/THUwangcy/ReChorus/tree/master/data/README.md) in `data`
