@@ -27,8 +27,7 @@ pip install -r requirements.txt
 ```bash
 python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset Grocery_and_Gourmet_Food
 
-python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset
-MovieLens_1M
+python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset MovieLens_1M
 ```
 
 5. (optional) Run jupyter notebook in `dataset` folder to download and build new datasets, or prepare your own datasets according to [Guideline](https://github.com/THUwangcy/ReChorus/tree/master/data/README.md) in `data`
