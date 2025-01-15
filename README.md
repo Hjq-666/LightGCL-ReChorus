@@ -24,11 +24,11 @@ pip install -r requirements.txt
 
 4. 使用内置数据集运行模型
 
--- **Grocery_and_Gourmet_Food数据库**
+- **Grocery_and_Gourmet_Food数据库**
 ```bash
 python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset Grocery_and_Gourmet_Food
 ```
--- **MovieLens_1M数据库**
+- **MovieLens_1M数据库**
 ```bash
 python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset MovieLens_1M
 ```
