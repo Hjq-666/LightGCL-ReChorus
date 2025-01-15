@@ -5,7 +5,7 @@
 - 利用推荐系统为背景，采用[ReChorus2.0框架](https://github.com/THUwangcy/ReChorus)，对[LightGCL](https://github.com/HKUDS/LightGCL)推荐模型进行复现，并与框架中同类别算法（不少于2个），在框架提供的数据集上（不少于2个），进行实验结果对比分析
 
 #### 代码位置
-- LightGCL model:`src/general/LightGCL.py`
+- LightGCL模型:`src/general/LightGCL.py`
 
 #### 模型运行
 - **Efficient**: multi-thread batch preparation, special implementations for the evaluation, and around 90% GPU utilization during training for deep models.
