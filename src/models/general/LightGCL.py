@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 import scipy.sparse as sp
-import torch.nn.functional as F
+import torch.nn.functional as torch_fun
 
 from models.BaseModel import GeneralModel
 
