@@ -51,27 +51,23 @@ class LightGCL(GeneralModel):
         """
         构建归一化的邻接矩阵
         """
-        R = sp.dok_matrix((user_count, item_count), dtype=np.float32)
+        interaction_matrix = sp.dok_matrix((user_count, item_count), dtype=np.float32)
         
         # 填充用户-物品交互矩阵
-        for user in train_mat:
-            for item in train_mat[user]:
-                R[user, item] = 1.0
+        for user, items in train_mat.items():
+            for item in items:
+                interaction_matrix[user, item] = 1.0
         
-        R = R.tocoo()
-        rowD = np.array(R.sum(1)).flatten() + 1e-10
-        colD = np.array(R.sum(0)).flatten() + 1e-10
-        R_coo = R.tocoo()
-        data = R_coo.data
-        row = R_coo.row
-        col = R_coo.col
+        interaction_matrix = interaction_matrix.tocoo()
+        row_sum = np.array(interaction_matrix.sum(1)).flatten() + 1e-10
+        col_sum = np.array(interaction_matrix.sum(0)).flatten() + 1e-10
         
         # 归一化处理
-        for i in range(len(data)):
-            data[i] = data[i] / pow(rowD[row[i]] * colD[col[i]], 0.5)
+        row_indices, col_indices = interaction_matrix.row, interaction_matrix.col
+        data = interaction_matrix.data / np.sqrt(row_sum[row_indices] * col_sum[col_indices])
         
-        norm_adj_mat = sp.csr_matrix((data, (row, col)), shape=(user_count, item_count))
-        return norm_adj_mat
+        normalized_adj_matrix = sp.csr_matrix((data, (row_indices, col_indices)), shape=(user_count, item_count))
+        return normalized_adj_matrix
 
     def forward(self, feed_dict):
         """
