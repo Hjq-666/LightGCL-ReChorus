@@ -109,33 +109,28 @@ class LightGCL(GeneralModel):
         计算BPR损失
         """
         pos_pred, neg_pred = prediction[:, 0], prediction[:, 1:]
-        neg_softmax = (neg_pred - neg_pred.max()).softmax(dim=1)
-        bpr_loss = -(((pos_pred[:, None] - neg_pred).sigmoid() * neg_softmax).sum(dim=1)).clamp(min=1e-8, max=1-1e-8).log().mean()
+        bpr_loss = -torch.log(torch.sigmoid(pos_pred[:, None] - neg_pred) + 1e-10).mean()
         return bpr_loss
 
     def _compute_cl_loss(self, out_dict):
         """
         计算对比学习损失
         """
-        G_u, E_u, G_i, E_i = out_dict['g_u_v'], out_dict['u_v'], out_dict['g_i_v'], out_dict['i_v']
-        G_u_norm = F.normalize(G_u, p=2, dim=-1)
-        E_u_norm = F.normalize(E_u, p=2, dim=-1)
-        G_i_norm = F.normalize(G_i, p=2, dim=-1)
-        E_i_norm = F.normalize(E_i, p=2, dim=-1)
+        g_user_vector, user_vector, g_item_vector, item_vector = out_dict['g_user_vector'], out_dict['user_vector'], out_dict['g_item_vector'], out_dict['item_vector']
+        g_user_norm = torch_fun.normalize(g_user_vector, p=2, dim=-1)
+        user_norm = torch_fun.normalize(user_vector, p=2, dim=-1)
+        g_item_norm = torch_fun.normalize(g_item_vector, p=2, dim=-1)
+        item_norm = torch_fun.normalize(item_vector, p=2, dim=-1)
         
         # 计算正样本得分
-        pos_score_u = (G_u_norm * E_u_norm).sum(dim=-1) / self.temp
-        pos_score_i = (G_i_norm * E_i_norm).sum(dim=-1) / self.temp
-        pos_score = torch.cat([pos_score_u, pos_score_i], dim=0)
+        pos_score = torch.cat([(g_user_norm * user_norm).sum(dim=-1), (g_item_norm * item_norm).sum(dim=-1)], dim=0) / self.temperature
         
         # 计算负样本得分
-        batch_size, num_items = G_u_norm.size(0), G_u_norm.size(1)
-        mask = torch.eye(num_items, dtype=torch.bool).unsqueeze(0).to(G_u_norm.device)
-        neg_score_u = torch.matmul(G_u_norm, E_u_norm.transpose(1, 2)) / self.temp
-        neg_score_u = neg_score_u.masked_fill(mask, float('-inf'))
-        neg_score_i = torch.matmul(G_i_norm, E_i_norm.transpose(1, 2)) / self.temp
-        neg_score_i = neg_score_i.masked_fill(mask, float('-inf'))
-        neg_score = torch.cat([neg_score_u, neg_score_i], dim=0)
+        num_items = g_user_norm.size(1)
+        mask = torch.eye(num_items, dtype=torch.bool).unsqueeze(0).to(g_user_norm.device)
+        neg_score_user = (g_user_norm @ user_norm.transpose(1, 2) / self.temperature).masked_fill(mask, float('-inf'))
+        neg_score_item = (g_item_norm @ item_norm.transpose(1, 2) / self.temperature).masked_fill(mask, float('-inf'))
+        neg_score = torch.cat([neg_score_user, neg_score_item], dim=0)
         
         # 计算对比学习损失
         neg_logsumexp = torch.logsumexp(neg_score, dim=-1)
