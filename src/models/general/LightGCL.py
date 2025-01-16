@@ -24,14 +24,14 @@ class LightGCL(GeneralModel):
 
     def __init__(self, args, corpus):
         GeneralModel.__init__(self, args, corpus)
-        self.emb_size = args.emb_size
-        self.n_layers = args.n_layers
-        self.norm_adj = self.build_adjmat(corpus.n_users, corpus.n_items, corpus.train_clicked_set)
-        self.q = args.q
-        self.temp = args.temp
+        self.embedding_size = args.emb_size
+        self.num_layers = args.n_layers
+        self.normalized_adj = self.build_adjmat(corpus.n_users, corpus.n_items, corpus.train_clicked_set)
+        self.rank = args.q
+        self.temperature = args.temp
         self.lambda1 = args.lambda1
         self.lambda2 = args.lambda2
-        self.encoder = LGCLEncoder(corpus.n_users, corpus.n_items, self.emb_size, self.norm_adj, self.n_layers, self.q, self.temp, self.lambda1, self.lambda2)
+        self.encoder = LGCLEncoder(corpus.n_users, corpus.n_items, self.embedding_size, self.normalized_adj, self.num_layers, self.rank, self.temperature, self.lambda1, self.lambda2)
         self.apply(self.init_weights)
 
     @staticmethod
@@ -68,17 +68,17 @@ class LightGCL(GeneralModel):
         prediction = (user_embed[:, None, :] * item_embed).sum(dim=-1)
         
         # 计算用户和物品的嵌入
-        u_v = user_embed.repeat(1, items.shape[1]).view(items.shape[0], items.shape[1], -1)
-        g_u_v = g_user_embed.repeat(1, items.shape[1]).view(items.shape[0], items.shape[1], -1)
-        i_v = item_embed
-        g_i_v = g_item_embed
+        user_vector = user_embed.repeat(1, items.shape[1]).view(items.shape[0], items.shape[1], -1)
+        g_user_vector = g_user_embed.repeat(1, items.shape[1]).view(items.shape[0], items.shape[1], -1)
+        item_vector = item_embed
+        g_item_vector = g_item_embed
         
         return {
             'prediction': prediction.view(feed_dict['batch_size'], -1),
-            'u_v': u_v,
-            'i_v': i_v,
-            'g_u_v': g_u_v,
-            'g_i_v': g_i_v
+            'user_vector': user_vector,
+            'item_vector': item_vector,
+            'g_user_vector': g_user_vector,
+            'g_item_vector': g_item_vector
         }
 
     def loss(self, out_dict):
@@ -139,15 +139,15 @@ class LGCLEncoder(nn.Module):
         super(LGCLEncoder, self).__init__()
         self.user_count = user_count
         self.item_count = item_count
-        self.emb_size = emb_size
-        self.norm_adj = norm_adj
-        self.n_layers = n_layers
-        self.q = q
-        self.temp = temp
+        self.embedding_size = emb_size
+        self.normalized_adj = norm_adj
+        self.num_layers = n_layers
+        self.rank = q
+        self.temperature = temp
         self.lambda1 = lambda1
         self.lambda2 = lambda2
         self.embedding_dict = self._init_model()
-        self.sparse_norm_adj = self._convert_sp_mat_to_sp_tensor(self.norm_adj).cuda()
+        self.sparse_norm_adj = self._convert_sp_mat_to_sp_tensor(self.normalized_adj).cuda()
 
     def _init_model(self):
         """
@@ -155,8 +155,8 @@ class LGCLEncoder(nn.Module):
         """
         initializer = nn.init.xavier_uniform_
         embedding_dict = nn.ParameterDict({
-            'user_emb': nn.Parameter(initializer(torch.empty(self.user_count, self.emb_size))),
-            'item_emb': nn.Parameter(initializer(torch.empty(self.item_count, self.emb_size))),
+            'user_emb': nn.Parameter(initializer(torch.empty(self.user_count, self.embedding_size))),
+            'item_emb': nn.Parameter(initializer(torch.empty(self.item_count, self.embedding_size))),
         })
         return embedding_dict
 
@@ -166,9 +166,9 @@ class LGCLEncoder(nn.Module):
         将稀疏矩阵转换为稀疏张量
         """
         coo = X.tocoo()
-        i = torch.LongTensor([coo.row, coo.col])
-        v = torch.from_numpy(coo.data).float()
-        return torch.sparse.FloatTensor(i, v, coo.shape)
+        indices = torch.LongTensor([coo.row, coo.col])
+        values = torch.from_numpy(coo.data).float()
+        return torch.sparse.FloatTensor(indices, values, coo.shape)
 
     @staticmethod
     def calculate_svd(norm_adj, q):
