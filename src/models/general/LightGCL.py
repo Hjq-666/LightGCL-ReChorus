@@ -183,7 +183,7 @@ class LGCLEncoder(nn.Module):
         return torch.sparse.FloatTensor(i, v, coo.shape)
 
     @staticmethod
-    def cal_svd_s_v_d(norm_adj, q):
+    def calculate_svd(norm_adj, q):
         """
         计算SVD分解
         """
@@ -194,52 +194,48 @@ class LGCLEncoder(nn.Module):
         """
         前向传播
         """
-        # 计算SVD分解
-        svd_u, svd_s, svd_v = self.cal_svd_s_v_d(self.sparse_norm_adj, q=self.q)
-        u_mul_s = svd_u @ torch.diag(svd_s)
-        v_mul_s = svd_v @ torch.diag(svd_s)
+        # 执行SVD分解
+        svd_u, svd_s, svd_v = self.calculate_svd(self.sparse_norm_adj, q=self.rank)
+        u_mul_s = torch.matmul(svd_u, torch.diag(svd_s))
+        v_mul_s = torch.matmul(svd_v, torch.diag(svd_s))
         vt = svd_v.T
         ut = svd_u.T
 
-        # 初始化用户和物品的嵌入
-        E_u_list = [self.embedding_dict['user_emb']]
-        E_i_list = [self.embedding_dict['item_emb']]
-        G_u_list = []
-        G_i_list = []
+        # 初始化用户和物品嵌入
+        user_embedding_list, item_embedding_list = [self.embedding_dict['user_emb']], [self.embedding_dict['item_emb']]
+        g_user_embedding_list, g_item_embedding_list = [], []
 
-        # 进行多层传播
-        for layer in range(1, self.n_layers + 1):
+        # 多层传播
+        for layer in range(self.num_layers):
             # GNN传播
-            Z_u = torch.spmm(self.sparse_norm_adj, E_i_list[layer - 1])
-            Z_i = torch.spmm(self.sparse_norm_adj.T, E_u_list[layer - 1])
+            Z_u = torch.spmm(self.sparse_norm_adj, item_embedding_list[layer])
+            Z_i = torch.spmm(self.sparse_norm_adj.T, user_embedding_list[layer])
 
             # SVD传播
-            vt_ei = vt @ E_i_list[layer - 1]
-            G_u = u_mul_s @ vt_ei
-            ut_eu = ut @ E_u_list[layer - 1]
-            G_i = v_mul_s @ ut_eu
+            G_u = torch.matmul(u_mul_s, torch.matmul(vt, item_embedding_list[layer]))
+            G_i = torch.matmul(v_mul_s, torch.matmul(ut, user_embedding_list[layer]))
 
             # 聚合结果
-            E_u_list.append(Z_u)
-            E_i_list.append(Z_i)
-            G_u_list.append(G_u)
-            G_i_list.append(G_i)
+            user_embedding_list.append(Z_u)
+            item_embedding_list.append(Z_i)
+            g_user_embedding_list.append(G_u)
+            g_item_embedding_list.append(G_i)
 
-        # 对所有层的结果求和
-        G_u = sum(G_u_list)
-        G_i = sum(G_i_list)
-        E_u = sum(E_u_list)
-        E_i = sum(E_i_list)
+        # 汇总所有层的结果
+        G_u = sum(g_user_embedding_list)
+        G_i = sum(g_item_embedding_list)
+        E_u = sum(user_embedding_list)
+        E_i = sum(item_embedding_list)
 
         # 获取所有用户和物品的嵌入
         user_all_embeddings = E_u
         item_all_embeddings = E_i
 
-        # 获取指定用户和物品的嵌入
-        user_embeddings = user_all_embeddings[users, :]
-        item_embeddings = item_all_embeddings[items, :]
-        G_user_embeddings = G_u[users, :]
-        G_item_embeddings = G_i[items, :]
+        # 提取指定用户和物品的嵌入
+        user_embeddings = user_all_embeddings[users]
+        item_embeddings = item_all_embeddings[items]
+        G_user_embeddings = G_u[users]
+        G_item_embeddings = G_i[items]
 
-        # 返回原视图的嵌入和新构建图的嵌入
+        # 返回原始和传播后的嵌入
         return user_embeddings, item_embeddings, G_user_embeddings, G_item_embeddings
