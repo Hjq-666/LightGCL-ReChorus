@@ -35,18 +35,6 @@ class LightGCL(GeneralModel):
         self.apply(self.init_weights)
 
     @staticmethod
-    def normalized_adj_single(adj):
-        """
-        计算归一化后的邻接矩阵
-        """
-        rowsum = np.array(adj.sum(1)) + 1e-10
-        d_inv_sqrt = np.power(rowsum, -0.5).flatten()
-        d_inv_sqrt[np.isinf(d_inv_sqrt)] = 0.
-        d_mat_inv_sqrt = sp.diags(d_inv_sqrt)
-        bi_lap = d_mat_inv_sqrt.dot(adj).dot(d_mat_inv_sqrt)
-        return bi_lap.tocoo()
-
-    @staticmethod
     def build_adjmat(user_count, item_count, train_mat, selfloop_flag=False):
         """
         构建归一化的邻接矩阵
