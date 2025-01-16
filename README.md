@@ -26,11 +26,11 @@ pip install -r requirements.txt
 
 - **Grocery_and_Gourmet_Food数据集**
 ```bash
-python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset Grocery_and_Gourmet_Food
+python src\main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset Grocery_and_Gourmet_Food
 ```
 - **MovieLens_1M数据集**
 ```bash
-python main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset MovieLens_1M
+python src\main.py --model_name LightGCL --emb_size 32 --lr 1e-3 --l2 1e-6 --dataset MovieLens_1M\ML_1MTOPK
 ```
 
 5. （可选）运行数据集文件夹中`.ipynb`文件以下载和构建新的数据集，或根据`data`中的[指南](https://github.com/Hjq-666/LightGCL-ReChorus/blob/main/data/README.md)去准备自己的数据集
