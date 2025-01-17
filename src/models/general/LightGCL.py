@@ -97,7 +97,8 @@ class LightGCL(GeneralModel):
         计算BPR损失
         """
         pos_pred, neg_pred = prediction[:, 0], prediction[:, 1:]
-        bpr_loss = -torch.log(torch.sigmoid(pos_pred[:, None] - neg_pred) + 1e-10).mean()
+        neg_softmax = (neg_pred - neg_pred.max()).softmax(dim=1)
+        bpr_loss = -(((pos_pred[:, None] - neg_pred).sigmoid() * neg_softmax).sum(dim=1)).clamp(min=1e-8, max=1-1e-8).log().mean()
         return bpr_loss
 
     def _compute_cl_loss(self, out_dict):
